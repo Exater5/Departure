@@ -1257,6 +1257,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: rocaNacimiento
       objectReference: {fileID: 0}
+    - target: {fileID: 5172230898614058431, guid: 1b3d9179d5fe3734f82e8e6edd7e7b9b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b3d9179d5fe3734f82e8e6edd7e7b9b, type: 3}
 --- !u!1 &1149321999
@@ -1985,7 +1990,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1942372344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1999,7 +2004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mDisolver: {fileID: 2100000, guid: f4944c92a28c7d74bbf52e5bec0ee090, type: 2}
-  duracion: 1
+  duracion: 2
 --- !u!136 &1942372345
 CapsuleCollider:
   m_ObjectHideFlags: 0

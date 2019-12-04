@@ -18,11 +18,15 @@ public class Dissolver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine(TransicionAlpha());
+        }
     }
     IEnumerator TransicionAlpha()
     {
-        for(float i = 0; i<duracion; i += Time.deltaTime)
+        mDisolver.SetFloat("Vector1_Alpha", 0f);
+        for (float i = 0; i<duracion; i += Time.deltaTime)
         {
             yield return null;
             mDisolver.SetFloat("Vector1_Alpha", i/duracion);
