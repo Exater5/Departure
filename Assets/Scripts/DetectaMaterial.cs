@@ -6,10 +6,11 @@ public class DetectaMaterial : MonoBehaviour
 {
     public LayerMask lMask;
     public GameObject particulas;
+    public float distanciaRay;
     RaycastHit hit;
     void Start()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 6f, lMask))
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, distanciaRay, lMask))
         {
             particulas.GetComponent<Renderer>().material = hit.transform.gameObject.GetComponent<Renderer>().material;
         }
@@ -17,8 +18,9 @@ public class DetectaMaterial : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {       
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 6f, lMask))
+    {
+        Debug.DrawLine(transform.position, transform.position - new Vector3(0, distanciaRay, 0), Color.yellow, Mathf.Infinity);
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, distanciaRay, lMask))
         {
             particulas.GetComponent<Renderer>().material = hit.transform.gameObject.GetComponent<Renderer>().material;
         }

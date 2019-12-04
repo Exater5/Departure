@@ -6,7 +6,7 @@ public class ColliderTobogan : MonoBehaviour
 {
     public PhysicMaterial toboMaterial;
     PhysicMaterial startMaterial;
-    
+    GameObject gSeguimiento;
     void Start()
     {
         
@@ -25,6 +25,8 @@ public class ColliderTobogan : MonoBehaviour
             startMaterial = col.GetComponent<CapsuleCollider>().material;
             col.GetComponent<CapsuleCollider>().material = toboMaterial;
         }
+        gSeguimiento = FindObjectOfType<Seguimiento>().gameObject;
+        gSeguimiento.SetActive(false);
     }
 
     private void OnTriggerExit(Collider col)
@@ -34,5 +36,6 @@ public class ColliderTobogan : MonoBehaviour
             col.GetComponent<Movimiento>().enabled = true;
             col.GetComponent<CapsuleCollider>().material = startMaterial;
         }
+        gSeguimiento.SetActive(true);
     }
 }

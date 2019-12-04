@@ -14,7 +14,7 @@ public class Follower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, new Vector3(target.position.x, transform.position.y, target.position.z), Time.deltaTime * 30f);
+        transform.position = Vector3.Lerp(transform.position, new Vector3(target.position.x, target.position.y + 1, target.position.z), Time.deltaTime * 30f);
         transform.LookAt(target);
     }
 }
