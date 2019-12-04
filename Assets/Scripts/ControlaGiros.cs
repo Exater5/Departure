@@ -5,6 +5,7 @@ using UnityEngine;
 public class ControlaGiros : MonoBehaviour
 {
     public int[] giroPiezas;
+    public int[] girosNecesarios;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +15,7 @@ public class ControlaGiros : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(giroPiezas[0] == 2 && giroPiezas[1] == 3 && giroPiezas[2] == 4)
+        if(giroPiezas[0] == girosNecesarios[0] && giroPiezas[1] == girosNecesarios[1] && giroPiezas[2] == girosNecesarios[2])
         {
             print("resuelto");
         }

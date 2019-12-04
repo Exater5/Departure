@@ -5,7 +5,7 @@ using UnityEngine;
 public class ColliderTobogan : MonoBehaviour
 {
     public PhysicMaterial toboMaterial;
-    public PhysicMaterial startMaterial;
+    PhysicMaterial startMaterial;
     
     void Start()
     {
