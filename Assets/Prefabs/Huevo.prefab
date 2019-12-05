@@ -13,7 +13,9 @@ GameObject:
   - component: {fileID: 4291911730669193887}
   - component: {fileID: 5805938028027874815}
   - component: {fileID: 5805938028027874808}
-  m_Layer: 0
+  - component: {fileID: 1907621511}
+  - component: {fileID: 1907621512}
+  m_Layer: 9
   m_Name: Huevo
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -27,13 +29,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2572462443322981955}
-  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.987, y: 0.277, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &7544487675610625638
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -96,7 +98,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!136 &5805938028027874808
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -104,10 +106,44 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2572462443322981955}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: c5e32266c41538e4d8176779313bff4d, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.1
-  m_Height: 0.22
+  m_Radius: 0.14
+  m_Height: 0.32984278
   m_Direction: 2
-  m_Center: {x: -0.00011005625, y: -0.0008486173, z: 0.029265866}
+  m_Center: {x: -0.000110052526, y: -0.0008486137, z: 0.04362992}
+--- !u!114 &1907621511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2572462443322981955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f6ca221f7deca442b68ed609c01c556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidad: 0.25
+  velocidadMaxima: 4
+  direccion: {fileID: 0}
+--- !u!114 &1907621512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2572462443322981955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d2d1ec90a5b8c44adda3ec973ffa90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lMask:
+    serializedVersion: 2
+    m_Bits: 311
+  minCaida: 0.5
+  huevoRoto: {fileID: 8458142073866510820, guid: 5fcdf28f0382c6b45902a0a622b201b9,
+    type: 3}
+  controlaParticulas: {fileID: 0}
