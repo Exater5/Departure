@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Seguimiento : MonoBehaviour
+public class SeguimientoParticulas : MonoBehaviour
 {
     public GameObject personaje;
     public Transform direccion;

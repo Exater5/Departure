@@ -13,14 +13,17 @@ public class Movimiento : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
+        print(transform.forward);
+        float vertical = Input.GetAxis("Vertical");
+        float horizontal = Input.GetAxis("Horizontal");
+
         if (rb.velocity.magnitude < velocidadMaxima)
         {
-            rb.AddForce(new Vector3(0, 0, (Input.GetAxis("Horizontal") * -velocidad * Camera.main.transform.forward.z / Time.deltaTime)));
-            rb.AddForce(new Vector3((Input.GetAxis("Vertical") * velocidad * Camera.main.transform.forward.x/ Time.deltaTime), 0, 0));
-
+            rb.AddForce(direccion.forward.normalized * vertical * velocidad);
+            rb.AddForce(direccion.right.normalized * horizontal * velocidad);
         }
-      
+
     }
 }

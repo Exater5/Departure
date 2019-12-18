@@ -25,7 +25,7 @@ public class ColliderTobogan : MonoBehaviour
             startMaterial = col.GetComponent<CapsuleCollider>().material;
             col.GetComponent<CapsuleCollider>().material = toboMaterial;
         }
-        gSeguimiento = FindObjectOfType<Seguimiento>().gameObject;
+        gSeguimiento = FindObjectOfType<SeguimientoParticulas>().gameObject;
         gSeguimiento.SetActive(false);
     }
 
