@@ -10,7 +10,6 @@ public class InputManager : MonoBehaviour
     [SerializeField]
     float velocidad = 2f;
     public float velocidadMaxima = 10;
-    [SerializeField]
     public Vector2 joystickDerecho;
     Transform camara;
     [SerializeField]

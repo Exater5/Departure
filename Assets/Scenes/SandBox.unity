@@ -854,7 +854,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 348465394}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -922,6 +922,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3bca84aee4b5b040807a4a71a4b0cc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocidadGiro: 50
+  n: 1
 --- !u!1 &349004246
 GameObject:
   m_ObjectHideFlags: 0
@@ -1110,7 +1112,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &593895032
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4251,7 +4253,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2572462442828448258}
   m_LocalRotation: {x: -0.69740313, y: 0.11674282, z: 0.11674282, w: 0.69740313}
-  m_LocalPosition: {x: -7.24, y: 8.83, z: 2.15}
+  m_LocalPosition: {x: 4.639, y: 10.556, z: 4.678}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4734,8 +4736,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fd47ba5520cd240a8666c121475abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidad: 2
-  velocidadMaxima: 10
+  velocidad: 5
+  velocidadMaxima: 20
   joystickDerecho: {x: 0, y: 0}
   seguidor: {fileID: 348465395}
 --- !u!1 &2577335937070476016
