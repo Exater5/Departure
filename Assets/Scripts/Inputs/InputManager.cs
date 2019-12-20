@@ -1,33 +1,48 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GamepadInput;
 
 public class InputManager : MonoBehaviour
 {
-    public Boton boton;
+    Rigidbody rb;
     Vector3 posInicio;
-    public class Boton
-    {
-        public bool pulsado;
-        public bool activado;
-    }
-
-
-
+    [SerializeField]
+    float velocidad = 2f;
+    public float velocidadMaxima = 10;
+    [SerializeField]
+    public Vector2 joystickDerecho;
+    Transform camara;
+    [SerializeField]
+    Transform seguidor;
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         posInicio = transform.position;
+        camara = Camera.main.transform;
     }
-
-    
-
     void Update()
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        
+    }
+    private void FixedUpdate()
+    {
+        for (int i = 0; i < 5; i++)
+            ObtieneInputs((GamePad.Index)i);
+    }
+    public void ObtieneInputs(GamePad.Index controller)
+    {
+        GamepadState state = GamePad.GetState(controller);
 
-        transform.position = new Vector3 (posInicio.x * h,transform.position.y, transform.position.z).normalized;
-        transform.position = new Vector3(transform.position.x, posInicio.y * v, transform.position.z).normalized;
-        Debug.Log(h);
+        Vector3 direccion = new Vector3(seguidor.forward.x * -1, 0 , seguidor.forward.z * -1);
+
+        //Vector3 movimientoZ = new Vector3(state.LeftStickAxis.x, 0, state.LeftStickAxis.y);
+        float axisAdelante = state.LeftStickAxis.y;
+        float axisLados = state.LeftStickAxis.x;
+        if (rb.velocity.magnitude < velocidadMaxima)
+        {
+            rb.AddForce(direccion.normalized * axisAdelante * velocidad);
+        }
+
     }
 }

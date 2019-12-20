@@ -14,7 +14,7 @@ public class CameraForwardFollower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 cameraTargetPosition = new Vector3(camara.position.x * -1, transform.position.y, camara.position.z * -1);
-        transform.LookAt(cameraTargetPosition);
+        //Vector3 cameraTargetPosition = new Vector3(camara.position.x * -1, transform.position.y, camara.position.z * -1);
+        transform.LookAt(new Vector3(camara.position.x, transform.position.y, camara.position.z));
     }
 }
