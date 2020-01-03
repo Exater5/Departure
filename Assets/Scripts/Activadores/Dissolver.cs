@@ -6,12 +6,11 @@ public class Dissolver : MonoBehaviour
 {
     public Material mDisolver;
     public float duracion;
-    MeshCollider c;
+    public MeshCollider c;
     // Start is called before the first frame update
     void Start()
     {
         //  mDisolver = GetComponent<Material>();
-        c = GetComponent<MeshCollider>();
         mDisolver.SetFloat("Vector1_Alpha", 0f);
         StartCoroutine(TransicionAlpha());
        

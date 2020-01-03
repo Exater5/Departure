@@ -16,8 +16,8 @@ public class Movimiento : MonoBehaviour
     void Update()
     {
         print(transform.forward);
-        float vertical = Input.GetAxis("Vertical");
-        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("L_YAxis_1");
+        float horizontal = Input.GetAxis("L_XAxis_1");
 
         if (rb.velocity.magnitude < velocidadMaxima)
         {

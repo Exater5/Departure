@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class CaidaDajno : MonoBehaviour
 {
     public LayerMask lMask;
@@ -30,6 +29,7 @@ public class CaidaDajno : MonoBehaviour
         {
             Instantiate(huevoRoto, transform.position, Quaternion.identity);
             Destroy(controlaParticulas);
+            FindObjectOfType<SceneManager>().RestartEnabled();
             Destroy(gameObject);
         }
     }
