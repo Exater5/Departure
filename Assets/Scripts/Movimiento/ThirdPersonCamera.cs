@@ -15,6 +15,7 @@ public class ThirdPersonCamera : MonoBehaviour
     float currentX;
     float currentY;
 
+    
     void Start()
     {
         cam = Camera.main;

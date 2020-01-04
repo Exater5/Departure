@@ -5,25 +5,30 @@ using UnityEngine;
 public class Movimiento : MonoBehaviour
 {
     Rigidbody rb;
-    public float velocidad = 1;
-    public float velocidadMaxima = 10;
+    public float velocidad;
+    public float velocidadMaxima;
     public Transform direccion;
+    float vertical;
+    float horizontal;
+    Vector3 rotacionObjetivo;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    private void Update()
     {
-        print(transform.forward);
-        float vertical = Input.GetAxis("L_YAxis_1");
-        float horizontal = Input.GetAxis("L_XAxis_1");
-
+        rotacionObjetivo = new Vector3(Camera.main.transform.position.x, transform.position.y, Camera.main.transform.position.z);
+        transform.LookAt(rotacionObjetivo);
+    }
+    void FixedUpdate()
+    {
         if (rb.velocity.magnitude < velocidadMaxima)
         {
-            rb.AddForce(direccion.forward.normalized * vertical * velocidad);
-            rb.AddForce(direccion.right.normalized * horizontal * velocidad);
+            float vertical = Input.GetAxis("L_YAxis_1");
+            float horizontal = Input.GetAxis("L_XAxis_1");
+            rb.AddForce(transform.forward * vertical * velocidad);
+            rb.AddForce(transform.right * horizontal * velocidad * -1);
         }
-
     }
 }
