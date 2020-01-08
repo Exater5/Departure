@@ -1235,6 +1235,25 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 3917734003670735760, guid: c2da07e308fc5c042b15a3c2a8842885, type: 3}
+--- !u!1 &667948865 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8936875112907278466, guid: 930555809bb7cbb4aa56fffd2fccb589,
+    type: 3}
+  m_PrefabInstance: {fileID: 944852696}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &667948869
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667948865}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9, y: 0.9000003, z: 0.8999999}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &669687107
 GameObject:
   m_ObjectHideFlags: 0
@@ -1546,7 +1565,7 @@ MeshCollider:
   m_GameObject: {fileID: 5469029248247180877}
   m_Material: {fileID: 13400000, guid: c209c2e29751b6440ab7f4426c7ddae5, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 30
@@ -4529,6 +4548,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1964286914}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1977565317 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8989413706754787958, guid: 930555809bb7cbb4aa56fffd2fccb589,
+    type: 3}
+  m_PrefabInstance: {fileID: 944852696}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1977565321
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977565317}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9000001, y: 0.9000007, z: 0.90000004}
+  m_Center: {x: 0.0000009536743, y: 0.000030517578, z: 0}
 --- !u!1 &1991402861
 GameObject:
   m_ObjectHideFlags: 0
@@ -4918,12 +4956,12 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 4209ba0f45eac99488efccec8eeaa783,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.63
+      value: 3.8
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 4209ba0f45eac99488efccec8eeaa783,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.12
+      value: 10.49
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 4209ba0f45eac99488efccec8eeaa783,
         type: 3}
