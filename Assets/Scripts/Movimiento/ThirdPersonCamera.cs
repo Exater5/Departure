@@ -14,11 +14,12 @@ public class ThirdPersonCamera : MonoBehaviour
     public float distance = 10f;
     float currentX;
     float currentY;
-
-    
+    bool cuadrando = false;
+    Vector3 dir;
     void Start()
     {
         cam = Camera.main;
+        dir = new Vector3(0, 0, -distance);
     }
 
     private void Update()
@@ -34,14 +35,36 @@ public class ThirdPersonCamera : MonoBehaviour
         currentX += state.rightStickAxis.x * sensibilidadHorizontal;
         currentY += state.rightStickAxis.y * sensibilidadVertical;
         currentY = Mathf.Clamp(currentY, yMinAngle, yMaxAngle);
+
+      /*  if(state.RightShoulder == true && !cuadrando)
+        {
+            cuadrando = true;
+
+        }
+        */
     }
 
     void LateUpdate()
     {
-        Vector3 dir = new Vector3(0, 0, -distance);
-        Quaternion rotation = Quaternion.Euler(-currentY, currentX, 0);
-        transform.position = lookAt.position + rotation * dir;
+        Quaternion rotation;
+        if (!cuadrando)
+        {
+            rotation = Quaternion.Euler(-currentY, currentX, 0);
+            transform.position = lookAt.position + rotation * dir;
+        }
+        else
+        {
+            StartCoroutine(Cuadra());
+        }
         transform.LookAt(lookAt);
     }
-
+    IEnumerator Cuadra()
+    {
+        for(float i = 0; i<0.75f; i += Time.deltaTime)
+        {
+            transform.position = lookAt.position + new Quaternion(0,0,0,0)* dir/0.75f;
+            yield return null;
+        }
+        cuadrando = false;
+    }
 }

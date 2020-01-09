@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movimiento : MonoBehaviour
+public class MovimientoCOD : MonoBehaviour
 {
     Rigidbody rb;
     public float velocidad;

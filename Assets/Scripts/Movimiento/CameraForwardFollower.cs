@@ -19,8 +19,6 @@ public class CameraForwardFollower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(Input.GetAxis("L_YAxis_1"));
-
         Vector3 rotacion = new Vector3(0, Input.GetAxis("L_XAxis_1") * anguloGiro, 0);
         transform.LookAt(new Vector3(camara.position.x, transform.position.y, camara.position.z));
         if (Input.GetAxis("L_YAxis_1") > 0)
@@ -32,8 +30,6 @@ public class CameraForwardFollower : MonoBehaviour
         {
             Quaternion rotObjetivo2 = Quaternion.Euler(transform.eulerAngles + rotacion);
             transform.rotation = Quaternion.Lerp(transform.rotation, rotObjetivo2, velocidadGiro);
-        }
-        
+        }        
     }
-
 }

@@ -21,7 +21,7 @@ public class ColliderTobogan : MonoBehaviour
     {
         if (col.gameObject.transform.CompareTag("Player"))
         {
-            col.GetComponent<Movimiento>().enabled = false;
+            col.GetComponent<MovimientoLibre>().enabled = false;
             startMaterial = col.GetComponent<CapsuleCollider>().material;
             col.GetComponent<CapsuleCollider>().material = toboMaterial;
         }
@@ -33,7 +33,7 @@ public class ColliderTobogan : MonoBehaviour
     {
         if (col.gameObject.transform.CompareTag("Player"))
         {
-            col.GetComponent<Movimiento>().enabled = true;
+            col.GetComponent<MovimientoLibre>().enabled = true;
             col.GetComponent<CapsuleCollider>().material = startMaterial;
         }
         gSeguimiento.SetActive(true);
