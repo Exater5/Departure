@@ -15,6 +15,8 @@ public class ThirdPersonCamera : MonoBehaviour
     float currentX;
     float currentY;
     bool cuadrando = false;
+    public float duracionCuadra;
+    bool empieza = false;
     Vector3 dir;
     void Start()
     {
@@ -36,10 +38,11 @@ public class ThirdPersonCamera : MonoBehaviour
         currentY += state.rightStickAxis.y * sensibilidadVertical;
         currentY = Mathf.Clamp(currentY, yMinAngle, yMaxAngle);
 
-      /*  if(state.RightShoulder == true && !cuadrando)
+        /*
+        if(state.RightShoulder == true && !cuadrando)
         {
+            print("Cuadro");
             cuadrando = true;
-
         }
         */
     }
@@ -49,20 +52,27 @@ public class ThirdPersonCamera : MonoBehaviour
         Quaternion rotation;
         if (!cuadrando)
         {
-            rotation = Quaternion.Euler(-currentY, currentX, 0);
-            transform.position = lookAt.position + rotation * dir;
+            rotation = Quaternion.Euler(-currentY, currentX, 0) ;
+            transform.position = lookAt.position + rotation  * dir;
+            if (!empieza)
+            {
+                empieza = true;
+            }
         }
         else
         {
-            StartCoroutine(Cuadra());
+            Quaternion rotacionHuevo = Quaternion.Euler(0, -lookAt.rotation.y * 360, 0);
+            transform.position = lookAt.position + rotacionHuevo * dir;
+            cuadrando = false;
+            // StartCoroutine(Cuadra());
         }
         transform.LookAt(lookAt);
     }
     IEnumerator Cuadra()
     {
-        for(float i = 0; i<0.75f; i += Time.deltaTime)
+        for (float i = 0; i<duracionCuadra; i += Time.deltaTime)
         {
-            transform.position = lookAt.position + new Quaternion(0,0,0,0)* dir/0.75f;
+            transform.position = Vector3.Lerp(transform.position, transform.position, duracionCuadra/i );
             yield return null;
         }
         cuadrando = false;

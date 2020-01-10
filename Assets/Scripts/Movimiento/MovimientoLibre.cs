@@ -9,7 +9,12 @@ public class MovimientoLibre : MonoBehaviour
     float vertical;
     float horizontal;
     bool rodando = false;
+    Rigidbody rb;
 
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
     private void Update()
     {
         vertical = Input.GetAxis("L_YAxis_1");
