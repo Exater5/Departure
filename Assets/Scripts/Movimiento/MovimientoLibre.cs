@@ -24,7 +24,7 @@ public class MovimientoLibre : MonoBehaviour
     {
         vertical = Input.GetAxis("L_YAxis_1");
         horizontal = Input.GetAxis("L_XAxis_1");
-        transform.Translate(new Vector3(-horizontal, 0, vertical) * velocidad/100);
+        transform.Translate(new Vector3(-horizontal, 0, -vertical) * velocidad/100);
 
         for (int i = 0; i < 5; i++)
             ObtieneInput((GamePad.Index)i);
