@@ -402,7 +402,6 @@ MonoBehaviour:
   sensibilidadHorizontal: 2
   sensibilidadVertical: 1
   distance: 2
-  duracionCuadra: 1
 --- !u!114 &160467910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2757,7 +2756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af4049aa5ad86114ea9df92a5879e6b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidad: 2
+  velocidad: 1
 --- !u!54 &1595147534
 Rigidbody:
   m_ObjectHideFlags: 0

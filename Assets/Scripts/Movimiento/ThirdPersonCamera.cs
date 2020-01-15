@@ -6,77 +6,99 @@ using GamepadInput;
 public class ThirdPersonCamera : MonoBehaviour
 {
     public Transform lookAt;
-    Camera cam;
-    public const float yMinAngle = -50f;
-    public const float yMaxAngle = 20f;
+
+    public const float yMinAngle = 8;
+    public const float yMaxAngle = 65f;
     public float sensibilidadHorizontal = 1f;
     public float sensibilidadVertical = 1f;
     public float distance = 10f;
     float currentX;
     float currentY;
-    public float duracionCuadra;
+    float x;
+    float y;
+    float initialx;
+    float initialy;
+
     Vector3 distancia;
-    Coroutine cr;
     Quaternion rotacionCamara;
     Quaternion rotacionHuevo;
+    Quaternion encuadre;
+
+    bool cuadrando = false;
+    bool girando = false;
+    bool puedeGirar = false;
     void Start()
     {
-        cam = Camera.main;
         distancia = new Vector3(0, 0, -distance);
+        rotacionCamara = Quaternion.Euler(25, lookAt.rotation.eulerAngles.y, 0);
+        transform.position = lookAt.position + rotacionCamara * distancia;
+        transform.LookAt(lookAt);
+        currentX = 0;
+        currentY = 25;
     }
 
     private void Update()
     {
-        float x = Input.GetAxis("R_XAxis_0");
-        float y = Input.GetAxis("R_YAxis_0");
-        currentX += x * sensibilidadHorizontal;
-        currentY += y * sensibilidadVertical;
+        x = Input.GetAxis("R_XAxis_0");
+        y = Input.GetAxis("R_YAxis_0");
+        currentX += (x * sensibilidadHorizontal);
+        currentY += (y * sensibilidadVertical);
         currentY = Mathf.Clamp(currentY, yMinAngle, yMaxAngle);
-        Rotador(new Vector2(currentX, currentY), x + y);
+        Rotador();
     }
 
-    void Rotador(Vector2 rot, float magnitud)
+    void Rotador()
     {
-        if(magnitud != 0)
+        if(x + y != 0)
         {
-            if (cr != null)
+            if (puedeGirar)
             {
-                StopCoroutine(cr);
+                if (!girando)
+                {
+                    initialx = -lookAt.rotation.eulerAngles.z;
+                    initialy = lookAt.rotation.eulerAngles.y;
+                    girando = true;
+                }
+                rotacionCamara = Quaternion.Euler(currentY - initialx, currentX + initialy, 0);
+                transform.position = lookAt.position + rotacionCamara * distancia;
+                transform.LookAt(lookAt);
             }
-            rotacionCamara = Quaternion.Euler(-rot.y + 25, rot.x + lookAt.rotation.eulerAngles.y, 0);
-            transform.position = lookAt.position + rotacionCamara * distancia;
-            transform.LookAt(lookAt);
-
-
         }
         else
         {
-            if(rotacionCamara != rotacionHuevo)
+            girando = false;
+            if (currentX + currentY != 25)
             {
-                //cr = StartCoroutine(Cuadra());
+                if (!cuadrando)
+                {
+                    puedeGirar = false;
+                    StartCoroutine(Cuadra());
+                    cuadrando = true;
+                }
             }
-            Quaternion rotacionObjetivo = Quaternion.Euler(25, lookAt.rotation.eulerAngles.y, 0);
-            transform.position = lookAt.position + rotacionObjetivo * distancia;
-            transform.LookAt(lookAt);
-            currentX = 0;
-            currentY = 0;
+            else
+            {
+                encuadre = Quaternion.Euler(25, lookAt.rotation.eulerAngles.y, 0);
+                transform.position = lookAt.position + encuadre * distancia;
+                transform.LookAt(lookAt);
+                puedeGirar = true;
+            }
         }
     }
     IEnumerator Cuadra()
     {
-        Quaternion rotacionObjetivo;
-
-        float duracion = 0.75f;
-        for(float i = 0; i <= duracion; i+= Time.deltaTime)
+        float duracion = 1f;
+        for (float i = 0; i <= duracion; i+= Time.deltaTime)
         {
-            rotacionHuevo = Quaternion.Euler(25, lookAt.rotation.eulerAngles.y * (i/duracion), 0);
-            rotacionObjetivo = Quaternion.Lerp(rotacionCamara, rotacionHuevo, duracion/i);
-            transform.position = lookAt.position + rotacionObjetivo * distancia;
+            encuadre = Quaternion.Lerp(Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0), Quaternion.Euler(25, lookAt.rotation.eulerAngles.y, 0), i/duracion);
+            transform.position = lookAt.position + encuadre * distancia;
             transform.LookAt(lookAt);
             yield return null;
         }
-        rotacionObjetivo = Quaternion.Euler(25, lookAt.rotation.eulerAngles.y, 0);
-        transform.position = lookAt.position + rotacionObjetivo * distancia;
-        transform.LookAt(lookAt);
+        encuadre = Quaternion.Euler(25, lookAt.rotation.eulerAngles.y, 0);
+        currentX = 0;
+        currentY = 25;
+        cuadrando = false;
+        puedeGirar = true;
     }
 }
