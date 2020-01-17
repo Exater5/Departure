@@ -11,10 +11,8 @@ public class MovimientoLibre : MonoBehaviour
     float horizontal;
     bool rodando = false;
     Rigidbody rb;
-
     //Animaciones
     Animation animacion;
-    bool haciaAlante;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -24,14 +22,13 @@ public class MovimientoLibre : MonoBehaviour
     {
         vertical = Input.GetAxis("L_YAxis_1");
         horizontal = Input.GetAxis("L_XAxis_1");
-        transform.Translate(new Vector3(-horizontal, 0, -vertical) * velocidad/100);
 
         for (int i = 0; i < 5; i++)
-            ObtieneInput((GamePad.Index)i);
+        ObtieneInput((GamePad.Index)i);
 
         //Animaciones
         velocidadRb = velocidad/10 + rb.velocity.magnitude * 200000;
-        if (velocidadRb >= 0.1f)
+        if (velocidadRb >= 0.1f && !rodando)
         {
             animacion.clip = animacion.GetClip("Corriendo");
             animacion["Corriendo"].speed = velocidadRb / 1.2f;

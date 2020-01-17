@@ -12,6 +12,8 @@ public class ThirdPersonCamera : MonoBehaviour
     public float sensibilidadHorizontal = 1f;
     public float sensibilidadVertical = 1f;
     public float distance = 10f;
+    public float duracionEncuadre = 1f;
+    public AnimationCurve ac;
     float currentX;
     float currentY;
     float x;
@@ -87,10 +89,9 @@ public class ThirdPersonCamera : MonoBehaviour
     }
     IEnumerator Cuadra()
     {
-        float duracion = 1f;
-        for (float i = 0; i <= duracion; i+= Time.deltaTime)
+        for (float i = 0; i <= duracionEncuadre; i+= Time.deltaTime)
         {
-            encuadre = Quaternion.Lerp(Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0), Quaternion.Euler(25, lookAt.rotation.eulerAngles.y, 0), i/duracion);
+            encuadre = Quaternion.Lerp(Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0), Quaternion.Euler(25, lookAt.rotation.eulerAngles.y, 0), ac.Evaluate(i / duracionEncuadre));
             transform.position = lookAt.position + encuadre * distancia;
             transform.LookAt(lookAt);
             yield return null;
