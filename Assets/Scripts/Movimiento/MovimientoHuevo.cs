@@ -8,6 +8,7 @@ public class MovimientoHuevo : MonoBehaviour
     public Transform seguidor;
     public float velocidad;
     public float gravedad;
+    public float sensibilidad;
     float peso;
     Vector3 inputs;
     Vector3 camFward;
@@ -27,14 +28,12 @@ public class MovimientoHuevo : MonoBehaviour
         float v = Input.GetAxis("L_YAxis_1") *-1;
         inputs = new Vector3(h,0,v);
         Vector3 posicionObjetivo = (h * -1 * transform.right + v * transform.forward);
-        movePlayer = posicionObjetivo * velocidad;
+        movePlayer = (posicionObjetivo * velocidad);
         SetGravity();
         movePlayer.y = peso;
-        if(seguidor.position != transform.position)
-        {
-            transform.LookAt(seguidor);
-        }
-        huevo.Move(movePlayer * Time.deltaTime);
+
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y - h * sensibilidad, transform.rotation.eulerAngles.z);
+        huevo.Move(movePlayer/100);
     }
 
     void SetGravity()

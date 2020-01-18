@@ -5,7 +5,6 @@ using UnityEngine;
 public class Follower : MonoBehaviour
 {
     public Transform target;
-    public float altura = 1f;
     Vector3 inputs;
     // Start is called before the first frame update
     void Start()
@@ -24,7 +23,8 @@ public class Follower : MonoBehaviour
         Vector3 hFw = new Vector3(target.forward.x, 0, target.forward.z);
         Vector3 posicionObjetivo = target.position + (inputs.x * -1* hRight + inputs.z * hFw);
         posicionObjetivo.y = target.position.y;
+
         transform.position = posicionObjetivo;
-        transform.rotation = target.rotation;
+        //transform.rotation = target.rotation;
     }
 }
