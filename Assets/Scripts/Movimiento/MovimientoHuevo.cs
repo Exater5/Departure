@@ -34,30 +34,16 @@ public class MovimientoHuevo : MonoBehaviour
         movePlayer = (posicionObjetivo * velocidad);
         SetGravity();
         movePlayer.y = peso;
-        if (huevo.velocity.magnitude >= 0.1)
-        {
-            animacion.clip = animacion.GetClip("Corriendo");
-            animacion["Corriendo"].speed = huevo.velocity.magnitude *2;
-            animacion.Play();
-            if (Input.GetAxis("L_YAxis_1") > 0)
-            {
-                animacion["Corriendo"].speed = (huevo.velocity.magnitude * 2) *-1;
-            }
-        }
-        else
-        {
-            animacion.clip = animacion.GetClip("Parado");
-            animacion.Play();
-            print("parado");
-        }
+
     }
     private void FixedUpdate()
     {
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y - h * sensibilidad, transform.rotation.eulerAngles.z);
         huevo.Move(movePlayer / 100);
     }
+
     void SetGravity()
-    {     
+    {
         if (huevo.isGrounded)
         {
             peso = -gravedad * Time.deltaTime;
