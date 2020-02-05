@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class AnimationController : MonoBehaviour
 {
-    GameObject huevoNormal;
-    public GameObject huevoRodando;
     CharacterController huevo;
     Animation animacion;
     Rigidbody rb;
@@ -13,11 +11,10 @@ public class AnimationController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        huevoNormal = GameObject.FindGameObjectWithTag("Huevo");
-        huevo = huevoNormal.GetComponent<CharacterController>();
-        animacion = huevoNormal.GetComponent<Animation>();
+        huevo = GetComponent<CharacterController>();
+        animacion = GetComponent<Animation>();
         animacion["PasoABola"].speed *= 1.5f;
-        rb = huevoRodando.GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -68,8 +65,8 @@ public class AnimationController : MonoBehaviour
         animacion.clip = animacion.GetClip("PasoABola");
         animacion.Play();
         yield return new WaitForSeconds(1f);
-        Instantiate(huevoRodando, huevoNormal.transform.position, Quaternion.Euler(transform.rotation.eulerAngles.x -90,huevoNormal.transform.rotation.eulerAngles.y +180 , transform.rotation.eulerAngles.z));
-        Debug.Break();
+        rb.isKinematic = false;
+        huevo.enabled = false;
         yield return null;
     }
 }
