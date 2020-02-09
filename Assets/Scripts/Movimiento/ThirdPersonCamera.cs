@@ -47,6 +47,16 @@ public class ThirdPersonCamera : MonoBehaviour
         currentY += (y * sensibilidadVertical);
         currentY = Mathf.Clamp(currentY, yMinAngle, yMaxAngle);
         Rotador();
+
+        if (Input.GetButton("R1") && Mathf.Abs(distancia.z) > 0.8f)
+        {
+            distancia.z += 0.1f;
+        }
+        else if (Input.GetButton("L1") && Mathf.Abs(distancia.z) < 2f)
+        {
+            distancia.z -= 0.1f;
+        }
+
     }
 
     void Rotador()

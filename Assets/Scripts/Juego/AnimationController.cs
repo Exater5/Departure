@@ -8,6 +8,9 @@ public class AnimationController : MonoBehaviour
     Animation animacion;
     Rigidbody rb;
     bool rodando = false;
+    bool reactivaColliders = false;
+    [SerializeField]
+    Transform huevoCollider;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +38,15 @@ public class AnimationController : MonoBehaviour
         else
         {
             rodando = false;
+            if (!reactivaColliders)
+            {
+                rb.isKinematic = true;
+                huevo.enabled = true;
+                FindObjectOfType<RotationController>().rodando = false;
+                Camera.main.GetComponent<ThirdPersonCamera>().lookAt = transform;
+                transform.rotation = Quaternion.Euler(0, FindObjectOfType<RotationController>().rotacionAntesDeRodar, 0);
+                reactivaColliders = true;
+            }
         }
     }
 
@@ -64,9 +76,12 @@ public class AnimationController : MonoBehaviour
     {
         animacion.clip = animacion.GetClip("PasoABola");
         animacion.Play();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         rb.isKinematic = false;
         huevo.enabled = false;
+        Camera.main.GetComponent<ThirdPersonCamera>().lookAt = huevoCollider;
+        FindObjectOfType<RotationController>().rodando = true;
         yield return null;
+        reactivaColliders = false;  
     }
 }
