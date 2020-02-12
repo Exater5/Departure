@@ -381,7 +381,6 @@ GameObject:
   - component: {fileID: 6633245498873321241}
   - component: {fileID: 3017118509291694722}
   - component: {fileID: 1834286033000576300}
-  - component: {fileID: 1834286033000576303}
   - component: {fileID: 1834286033000576302}
   m_Layer: 0
   m_Name: HuevoNormal
@@ -442,25 +441,6 @@ CharacterController:
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.15, z: 0}
---- !u!114 &1834286033000576303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7662132028348523786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33d2d1ec90a5b8c44adda3ec973ffa90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lMask:
-    serializedVersion: 2
-    m_Bits: 311
-  minCaida: 0.5
-  huevoRoto: {fileID: 8458142073866510820, guid: 5fcdf28f0382c6b45902a0a622b201b9,
-    type: 3}
-  controlaParticulas: {fileID: 0}
 --- !u!114 &1834286033000576302
 MonoBehaviour:
   m_ObjectHideFlags: 0

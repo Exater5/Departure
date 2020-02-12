@@ -16,12 +16,12 @@ public class MovimientoHuevo : MonoBehaviour
     Vector3 camFward;
     Vector3 camRight;
     Vector3 movePlayer;
-    Animation animacion;
+    AnimationController aC;
     // Start is called before the first frame update
     void Start()
     {
         huevo = GetComponent<CharacterController>();
-        animacion = GetComponent<Animation>();
+        aC = GetComponent<AnimationController>();
     }
 
     // Update is called once per frame
@@ -38,8 +38,12 @@ public class MovimientoHuevo : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y - h * sensibilidad, transform.rotation.eulerAngles.z);
-        huevo.Move(movePlayer / 100);
+        if (!aC.rodando)
+        {
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y - h * sensibilidad, transform.rotation.eulerAngles.z);
+            huevo.Move(movePlayer / 100);
+        }
+
     }
 
     void SetGravity()

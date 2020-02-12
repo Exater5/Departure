@@ -7,17 +7,24 @@ public class AnimationController : MonoBehaviour
     CharacterController huevo;
     Animation animacion;
     Rigidbody rb;
-    bool rodando = false;
+    public bool rodando = false;
     bool reactivaColliders = false;
     [SerializeField]
     Transform huevoCollider;
+    RotationController rController;
+    [SerializeField]
+    float duracionRotacion;
+    [SerializeField]
+    AnimationCurve ac;
+    Quaternion rotInicial;
+    public GameObject particulas;
     // Start is called before the first frame update
     void Start()
     {
         huevo = GetComponent<CharacterController>();
         animacion = GetComponent<Animation>();
-        animacion["PasoABola"].speed *= 1.5f;
         rb = GetComponent<Rigidbody>();
+        rController = FindObjectOfType<RotationController>().GetComponent<RotationController>();
     }
 
     void Update()
@@ -32,20 +39,15 @@ public class AnimationController : MonoBehaviour
             if (!rodando)
             {
                 rodando = true;
-                StartCoroutine(Rueda());
+                Rueda();
             }
         }
         else
         {
-            rodando = false;
-            if (!reactivaColliders)
+            if (rodando)
             {
-                rb.isKinematic = true;
-                huevo.enabled = true;
-                FindObjectOfType<RotationController>().rodando = false;
-                Camera.main.GetComponent<ThirdPersonCamera>().lookAt = transform;
-                transform.rotation = Quaternion.Euler(0, FindObjectOfType<RotationController>().rotacionAntesDeRodar, 0);
-                reactivaColliders = true;
+                rodando = false;
+                TerminaDeRodar();
             }
         }
     }
@@ -72,16 +74,31 @@ public class AnimationController : MonoBehaviour
         }
     }
 
-    IEnumerator Rueda()
+    public void Rueda()
     {
-        animacion.clip = animacion.GetClip("PasoABola");
+        rotInicial = transform.rotation;
+        animacion.clip = animacion.GetClip("Rueda");
         animacion.Play();
-        yield return new WaitForSeconds(0.5f);
+        Camera.main.GetComponent<ThirdPersonCamera>().lookAt = huevoCollider;
+    }
+    public void AjusteRueda()
+    {
         rb.isKinematic = false;
         huevo.enabled = false;
-        Camera.main.GetComponent<ThirdPersonCamera>().lookAt = huevoCollider;
-        FindObjectOfType<RotationController>().rodando = true;
-        yield return null;
-        reactivaColliders = false;  
+        rController.rodando = true;
+        reactivaColliders = false;
+    }
+    public void TerminaDeRodar()
+    {
+        rController.rodando = false;
+        transform.rotation = rotInicial;
+        Instantiate(particulas, transform.position, Quaternion.identity);
+        animacion.clip = animacion.GetClip("Parado");
+        animacion.Play();
+
+        Camera.main.GetComponent<ThirdPersonCamera>().lookAt = transform;
+        rb.isKinematic = true;
+        huevo.enabled = true;
+        reactivaColliders = true;
     }
 }
